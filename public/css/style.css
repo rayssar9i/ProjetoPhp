@@ -1,0 +1,11 @@
+.h1{color:darkblue;}
+
+body {
+    font-family: "Google Sans"
+}
+header {
+    background-color: #ff5757; 
+    padding: 1px;
+    text-align: left;
+    border-left: 10px solid #ff5757;
+}
