@@ -2,7 +2,7 @@
 
 @section('title', 'Crie uma receita')
 
-$section('content')
+@section('content')
 
     <h1>Crie uma nova receita</h1>
 

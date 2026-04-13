@@ -25,9 +25,11 @@
                         <a href = "/" class = "nav-link">Home</a>
                     </li>
 
+
                     <li class = "nav-item">
                         <a href = "/events/create" class = "nav-link">criar novas receitas</a>
                     </li>
+
 
                     <li class = "nav-item">
                         <a href = "/" class = "nav-link">minhas receitas       </a>
@@ -38,9 +40,12 @@
                         <a href = "/" class = "nav-link">perfil</a>
                     </li>
 
+
                     <li class = "nav-item">
                         <a href = "/" class = "nav-link">favoritos</a>
                     </li>
+
+
                 </ul>
 
         </nav>
@@ -51,6 +56,12 @@
     <footer>
         <p>Para nossas receitas &copy; 2026</p>
     </footer>
+
+        <script  type = "module"  src = " https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js " > </script> 
+        <script nomodule src = " https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js " >  
+     </script>
+ 
+
     </body>
 
 </html>

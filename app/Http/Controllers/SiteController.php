@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SiteConttroller extends Controller
+class SiteController extends Controller
 {
     public function index(){
     $nome = "Rayssa";
@@ -21,5 +21,15 @@ class SiteConttroller extends Controller
 
     public function create(){
         return view('events.create');
+    }
+
+    public function produtos(){
+        $busca = request('search');
+
+        return view('produtos', ['busca' => $busca]);
+    }
+
+    public function produto($id){
+        return view('produto', ['id' => $id]);
     }
 }
