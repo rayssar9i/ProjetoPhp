@@ -1,0 +1,51 @@
+/* Estilos base para o cabeçalho rosa */
+  .navbar {
+    background-color: #e57373;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+}
+
+/* Aqui resolvemos a cor dos links */
+.nav-left a, .nav-right a {
+    color: white; /* Cor branca para contrastar com o rosa */
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.logo-circulo {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+
+
+.search-container {
+    width: 500px; /* Definimos um tamanho fixo para não ser gigante */
+    position: relative;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+.perfil-icon {
+    font-size: 80px;
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+}

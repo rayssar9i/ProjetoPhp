@@ -4,7 +4,9 @@
         <meta charset = "UTF-8">
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
         <title>@yield('title')</title>
-        <link rel = "stylesheet" href = "/css/style.css">
+        <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+            @stack('styles')
+
         <script src = "/js/script.js"></script> 
 
         <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
@@ -14,41 +16,22 @@
     
     <body>
     <header>
-        <nav class = "navbar navbar-expand-lg navbar-light">
-            <div class = "collapse navbar-collapse" id = "nav bar">
-                <a href = "/" class = "navbar-brand">
-                    <img src = "/img/" alt="nome ">
-                </a>
-                <ul class ="navbar-nav">
+       <nav class="navbar">
+            <div class="nav-left">
+                <!--<div class="logo-circulo"></div> -->
+                <a href = "{{ route('home') }}" class="logo-circulo"></a>
+                <a href="#">Receitas salgadas</a>
+                <a href="#">Receitas doces</a>
+                <a href="#">Ultimas Receitas</a>
+            </div>
 
-                    <li class = "nav-item">
-                        <a href = "/" class = "nav-link">Home</a>
-                    </li>
-
-
-                    <li class = "nav-item">
-                        <a href = "/events/create" class = "nav-link">criar novas receitas</a>
-                    </li>
-
-
-                    <li class = "nav-item">
-                        <a href = "/" class = "nav-link">minhas receitas       </a>
-                    </li>
-
-
-                    <li class = "nav-item"
-                        <a href = "/" class = "nav-link">perfil</a>
-                    </li>
-
-
-                    <li class = "nav-item">
-                        <a href = "/" class = "nav-link">favoritos</a>
-                    </li>
-
-
-                </ul>
-
-        </nav>
+            <div class="nav-right">
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Pesquisar...">
+                </div>
+                <a href="{{ route('profile') }}" class="perfil-icon">👤</a>
+            </div>
+    </nav>
 
 </header>
         @yield('content')
