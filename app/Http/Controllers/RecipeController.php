@@ -34,40 +34,33 @@ class RecipeController extends Controller
     // Aproveita e já deixa pronta a função que vai RECEBER os dados do formulário:
     public function store(Request $request)
     {
-        // 1. Validação (Garante que o banco não receba lixo)
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'ingredients' => 'required',
-        'instructions' => 'required',
-        'category_id' => 'required',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-    ]);
-
-    $recipe = new Recipe;
+    $recipe = new \App\Models\Recipe;
 
     $recipe->title = $request->title;
     $recipe->ingredients = $request->ingredients;
-    $recipe->instructions = $request->instructions;
-    $recipe->category_id = $request->category_id;
-    $recipe->user_id = 1; // Temporário: ID do seu usuário logado
+    $recipe->instructions = $request->instructions; // plural
+    $recipe->extra_info = $request->extra; // mapeando 'extra' para 'extra_info' da migration
+    
+    // IMPORTANTE: Como o teu formulário não enviou category_id, 
+    // vamos forçar o ID 1 para teste (garante que tens categorias no banco)
+    $recipe->category_id = $request->category_id ?? 1;
+    $recipe->user_id = 1; 
 
-    // 2. Upload da Imagem (se houver)
+    // Upload da Imagem
     if($request->hasFile('image') && $request->file('image')->isValid()) {
         $requestImage = $request->image;
         $extension = $requestImage->extension();
         $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
         
-        // Move a imagem para public/img/recipes
         $requestImage->move(public_path('img/recipes'), $imageName);
         $recipe->image = $imageName;
     }
 
-    // 3. SALVAR NO BANCO
-    $recipe->save();
+    $recipe->save(); // A ordem final para o PostgreSQL
 
-    return redirect('/')->with('msg', 'Receita enviada com sucesso!');
-    }
-    }
+    return redirect('/')->with('msg', 'Receita criada com sucesso!');
+}
+}
 
 
 
