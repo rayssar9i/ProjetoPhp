@@ -10,21 +10,20 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('recipes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-
-
-            $table->string('title', 100);
-            $table->text('ingredients');
-            $table->text('instruction');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); //dono da receita 
-            $table->foreignId('category_id')->constrained(); //chave estrangeira, categoria da receita
-
-
-        });
-    }
+{
+    Schema::create('recipes', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->string('title', 100);
+        $table->text('ingredients');
+        $table->text('instructions'); // Mudei para o plural para bater com o Controller
+        $table->string('image')->nullable(); // Adicionei para a foto da receita
+        $table->text('extra_info')->nullable(); // Para o campo "Mais informações"
+        
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('category_id')->constrained();
+    });
+}
 
     /**
      * Reverse the migrations.

@@ -15,11 +15,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Criar as categorias base primeiro
+    \App\Models\Category::create(['name' => 'Salgados']);
+    \App\Models\Category::create(['name' => 'Doces']);
+    \App\Models\Category::create(['name' => 'Massas']);
+    \App\Models\Category::create(['name' => 'Sobremesas']);
+    \App\Models\Category::create(['name' => 'Almoço']);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+    // Criar um utilizador de teste para ser o autor
+    \App\Models\User::factory()->create([
+        'name' => 'Cozinheiro Teste',
+        'email' => 'teste@exemplo.com',
+    ]);
+
+    // Agora sim, chamamos o Seeder de Receitas que criaste
+    $this->call([
+        RecipeSeeder::class,
+    ]);
     }
 }

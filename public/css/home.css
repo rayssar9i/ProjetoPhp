@@ -1,0 +1,46 @@
+body { background-color: #f7e7e4; } /* Cor de fundo creme do protótipo */
+
+.section-title {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* 1. Banners */
+.banner-box {
+    height: 200px;
+    background-color: #d9d9d9;
+    border-radius: 15px;
+}
+
+/* 2. Círculos de Categoria */
+.category-circle {
+    width: 80px;
+    height: 80px;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+.category-item span { font-size: 14px; color: #666; display: block; }
+
+/* 3. Cards das Receitas */
+.recipe-thumb {
+    height: 120px;
+    background-color: #d9d9d9;
+}
+
+.mini-recipe-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Ajuste para ter 5 colunas na mesma linha no Bootstrap */
+@media (min-width: 768px) {
+    .recipe-section .col {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
