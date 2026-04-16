@@ -31,7 +31,13 @@
             @foreach($ultimas as $recipe)
                 <div class="col-md-2 col-6">
                     <div class="card mini-recipe-card">
-                        <div class="card-img-top recipe-thumb"></div>
+                        <div class="card-img-top recipe-thumb">
+                            @if($recipe->image)
+                                <img src="{{ asset('img/recipes/' . $recipe->image) }}" alt="{{ $recipe->title }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                            @else
+                                <div class="placeholder-thumb" style="background: #eee; height: 100%; border-radius: 10px;"></div>
+                            @endif
+                        </div>
                         <div class="card-body p-2 text-center">
                             <a href="{{ route('recipes.show', $recipe->id) }}" class="text-decoration-none text-dark">
                                 <p class="card-text m-0 text-truncate">{{ $recipe->title }}</p>
@@ -49,15 +55,47 @@
             @foreach($almoco as $recipe)
                 <div class="col-md-2 col-6">
                     <div class="card mini-recipe-card">
-                        <div class="card-img-top recipe-thumb"></div>
+                        <div class="card-img-top recipe-thumb">
+                            @if($recipe->image)
+                                <img src="{{ asset('img/recipes/' . $recipe->image) }}" alt="{{ $recipe->title }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                            @else
+                                <div class="placeholder-thumb" style="background: #eee; height: 100%; border-radius: 10px;"></div>
+                            @endif
+                        </div>
                         <div class="card-body p-2 text-center">
-                            <p class="card-text m-0 text-truncate">{{ $recipe->title }}</p>
+                            <a href="{{ route('recipes.show', $recipe->id) }}" class="text-decoration-none text-dark">
+                                <p class="card-text m-0 text-truncate">{{ $recipe->title }}</p>
+                            </a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
+
+    <div class ="recipe-section mb-5">
+        <h5 class ="section-title">Sobremesas</h5>
+        <div class = "row g-3">
+            @foreach($Sobremesas as $recipe)
+          <div class="col-md-2 col-6">
+                    <div class="card mini-recipe-card">
+                        <div class="card-img-top recipe-thumb">
+                            @if($recipe->image)
+                                <img src="{{ asset('img/recipes/' . $recipe->image) }}" alt="{{ $recipe->title }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                            @else
+                                <div class="placeholder-thumb" style="background: #eee; height: 100%; border-radius: 10px;"></div>
+                            @endif
+                        </div>
+                        <div class="card-body p-2 text-center">
+                            <a href="{{ route('recipes.show', $recipe->id) }}" class="text-decoration-none text-dark">
+                                <p class="card-text m-0 text-truncate">{{ $recipe->title }}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div
 
 </div>
 @endsection('content') 

@@ -30,16 +30,16 @@
                     <input type="text" name="title" class="form-input-custom" placeholder="Digite o Titulo">
                 </div>
 
-                <div class="mb-4">
+               <div class="mb-4">
                     <label class="form-label-custom">Categorias</label>
                     <div class="category-options">
-                        @foreach(['Sobremesas', 'Salgados', 'Dietas Restritivas'] as $cat)
-                        <div class="category-switch">
-                            <span>{{ $cat }}</span>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch">
+                        @foreach($categorias as $cat)
+                            <div class="category-switch d-flex justify-content-between align-items-center mb-2 p-2 bg-white rounded-pill shadow-sm">
+                                <span>{{ $cat->name }}</span>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="radio" name="category_id" value="{{ $cat->id }}" id="cat_{{ $cat->id }}" required>
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

@@ -9,23 +9,26 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
-
+    protected $fillable = ['id', 'name'];
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
         // Criar as categorias base primeiro
-    \App\Models\Category::create(['name' => 'Salgados']);
-    \App\Models\Category::create(['name' => 'Doces']);
-    \App\Models\Category::create(['name' => 'Massas']);
-    \App\Models\Category::create(['name' => 'Sobremesas']);
-    \App\Models\Category::create(['name' => 'Almoço']);
+    \App\Models\Category::create([ 'id' =>1, 'name' => 'Salgados']);
+    \App\Models\Category::create(['id'=>2,'name' => 'Doces']);
+    \App\Models\Category::create(['id'=>3, 'name' => 'Massas']);
+    \App\Models\Category::create(['id'=>4, 'name' => 'Sobremesas']);
+    \App\Models\Category::create(['id'=>5,'name' => 'Almoço']);
+    \App\Models\Category::create(['id'=> 6,'name'=> 'Dietas Restritivas']);
 
-    // Criar um utilizador de teste para ser o autor
-    \App\Models\User::factory()->create([
-        'name' => 'Cozinheiro Teste',
-        'email' => 'teste@exemplo.com',
+  
+    \App\Models\User::create([
+        'id' => 1,
+        'name' => 'Admin',
+        'email' => 'admin@teste.com',
+        'password' => bcrypt('123456')
     ]);
 
     // Agora sim, chamamos o Seeder de Receitas que criaste
