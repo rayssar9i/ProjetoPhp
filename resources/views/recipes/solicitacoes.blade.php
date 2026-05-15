@@ -2,8 +2,8 @@
 
 @section('title', 'solicitacoes-gerente')
 
-@push('sytles')
-    <link rel = "stylesheet" href = "{{asset('css/soicitacoes.css') }} ">
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/solicitacoes.css') }}">
 @endpush
 
 @section('content')

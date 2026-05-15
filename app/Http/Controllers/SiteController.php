@@ -7,16 +7,14 @@ use Illuminate\Http\Request;
 class SiteController extends Controller
 {
     public function index(){
-    $nome = "Rayssa";
-    $idade = "20";
-    $array = ["joana", "jose", "joao"]; 
-    return view('contact', 
-    [
-        'nome' => $nome,
-        'idade' => $idade,
-        'array' => $array  
-        
-    ]);
+    $search = request('search');
+        if($search){
+            $receitas = receitas::where([
+                ['title', 'like', '%'.$search.'%']
+            ])
+        }else{
+            $receitas = receitas::all();
+        }
     }
 
     public function create(){

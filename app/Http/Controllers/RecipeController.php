@@ -15,12 +15,17 @@ class RecipeController extends Controller
             'almoco'=> Recipe::where('category_id', 5)->take(6)->get(),
             'Sobremesas'=> Recipe::where('category_id',4)->take(6)->get()
         ]);
+
+
     }
 
-    
 
     public function profile(){
         return view('recipes.profile');
+    }
+
+    public function solicitacoes(){
+        return view('recipes.solicitacoes');
     }
 
     public function create(){

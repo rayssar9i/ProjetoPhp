@@ -29,6 +29,11 @@
                 <div class="search-container">
                     <input type="text" class="search-bar" placeholder="Pesquisar...">
                 </div>
+                @auth
+                    @if(auth()->user()->isAdmin())
+                        <a href="{{ route('solicitacoes') }}" class="btn btn-warning admin-button">Ver solicitações</a>
+                    @endif
+                @endauth
                 <a href="{{ route('profile') }}" class="perfil-icon">👤</a>
             </div>
         </nav>

@@ -15,6 +15,14 @@
         <div class="col-md-4"><div class="banner-box"></div></div>
     </div>
 
+    @auth
+        @if(auth()->user()->isAdmin())
+            <div class="mb-4">
+                <a href="{{ route('solicitacoes') }}" class="btn btn-warning">Ver solicitações</a>
+            </div>
+        @endif
+    @endauth
+
     <h5 class="section-title">Receitas mais buscadas</h5>
     <div class="d-flex justify-content-between mb-5 text-center">
         @foreach($categorias as $cat)
