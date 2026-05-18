@@ -25,7 +25,11 @@ class RecipeController extends Controller
     }
 
     public function solicitacoes(){
-        return view('recipes.solicitacoes');
+        // Busca todas as receitas (ou as específicas das solicitações)
+        $recipes = Recipe::where('status', 'pending')->latest()->paginate(10); 
+
+        // Passa a variável $recipes para a view
+        return view('recipes.solicitacoes', compact('recipes'));
     }
 
     public function create(){

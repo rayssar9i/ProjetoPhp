@@ -1,27 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-/*! Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/ 
+});
 
-use App\Http\Controllers\RecipeController;
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('/', [RecipeController::class, 'index']) -> name('home');
-Route::get('/perfil', [RecipeController::class, 'profile']) -> name('profile');
-Route::get('/receita-exemplo', [RecipeController::class,'show']) -> name('recipe.show');
-Route::get('/receita/criar', [RecipeController::class, 'create'])->name('recipes.create');
-
-// Rota para mostrar o formulário
-Route::get('/receita/criar', [RecipeController::class, 'create'])->name('recipes.create');
-
-// Rota para RECEBER os dados (o formulário aponta para cá)
-Route::post('/receita/guardar', [RecipeController::class, 'store'])->name('recipes.store');
-// Rota para ver uma receita específica
-Route::get('/receita/{id}', [RecipeController::class, 'show'])->name('recipes.show');
-Route::get('/solicitacoes', [RecipeController::class, 'solicitacoes'])->name('solicitacoes');
-//listas de rotas, drirecionamento para as paginas, paginas estao na pasta resources/views, o nome da pagina tem que ser igual ao nome da rota, exemplo: /contact tem que ter uma pagina chamada contact.blade.php, e assim por diante.
-
-?>
+require __DIR__.'/auth.php';

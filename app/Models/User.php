@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -47,8 +48,20 @@ class User extends Authenticatable
         ];
     }
 
-    public function isAdmin(): bool
+    public function isManager(): bool//metodo pra verificar se é admin
     {
-        return $this->email === 'admin@teste.com';
+        return $this->role ==='manager' || $this->role === 'admin';
     }
+
+    public function isAdmin(): bool //verifica se é admin
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isUser(): bool
+    {
+        return $this-> role === 'user';
+    }
+
+
 }
