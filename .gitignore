@@ -22,3 +22,13 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+# Ignorar imagens de upload/teste que deixam o repositório pesado
+
+# Ignorar o banco de dados local SQLite (caso use e não queira subir os dados)
+/database/database.sqlite
+
+# Garantir que dependências pesadas fiquem de fora (padrão do Laravel)
+/vendor/
+/node_modules/
+/public/build/
+.env

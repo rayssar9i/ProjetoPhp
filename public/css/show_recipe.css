@@ -1,0 +1,9 @@
+body { background-color: #f7e7e4; } /* Cor de fundo creme do protótipo */
+
+.col-md-6 img {
+    width: 100%;
+    height: auto;
+    max-height: 448px;
+    object-fit: cover;
+    display: block;
+}

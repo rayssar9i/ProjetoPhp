@@ -19,7 +19,7 @@
                     <div class="image-placeholder"></div>
                     <label for="image" class="btn-upload">
                         Carregar imagem <ion-icon name="cloud-upload-outline"></ion-icon>
-                        <input type="file" id="image" name="image" hidden>
+                        <input type="file" id="image" name="image" hidden> 
                     </label>
                 </div>
             </div>

@@ -12,7 +12,7 @@ class RecipeSeeder extends Seeder
      */
     public function run(): void
     {
-        //Cria 15 receitas
-        \App\Models\Recipe::factory(15)->create();
+        //Cria receitas aleatorias
+        \App\Models\Recipe::factory(5)->create();
     }
 }

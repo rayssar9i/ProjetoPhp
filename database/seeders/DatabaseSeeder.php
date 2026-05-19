@@ -25,13 +25,31 @@ class DatabaseSeeder extends Seeder
 
   
     \App\Models\User::create([
-        'id' => 1,
+        //'id' => 1,
         'name' => 'Admin',
         'email' => 'admin@teste.com',
-        'password' => bcrypt('123456')
+        'password' => bcrypt('12345678'),
+        'role' => 'admin' 
     ]);
 
-    // Agora sim, chamamos o Seeder de Receitas que criaste
+            // 3. Criar usuário GERENTE para testes
+        \App\Models\User::create([
+           // 'id' => 2,
+            'name' => 'Gerente',
+            'email' => 'gerente@teste.com',
+            'password' => bcrypt('12345678'),
+            'role' => 'manager' 
+        ]);
+
+        \App\Models\User::create([
+           // 'id' => 3,
+            'name' => 'Usuário Comum',
+            'email' => 'user@teste.com',
+            'password' => bcrypt('12345678'),
+            'role' => 'user' 
+        ]);
+
+    
     $this->call([
         RecipeSeeder::class,
     ]);

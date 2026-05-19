@@ -2,7 +2,12 @@
 
 @section('title', $recipe->title)
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/show_recipe.css') }}">
+@endpush
+
 @section('content')
+
 <div class="container mt-5">
     <h1>{{ $recipe->title }}</h1>
     <hr>
@@ -23,4 +28,5 @@
         </div>
     </div>
 </div>
-@endsection
+
+@endsection('content') 

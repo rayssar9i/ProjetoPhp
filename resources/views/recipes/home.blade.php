@@ -10,10 +10,32 @@
 <div class="container mt-4">
     
     <div class="row mb-5">
-        <div class="col-md-4"><div class="banner-box"></div></div>
-        <div class="col-md-4"><div class="banner-box"></div></div>
-        <div class="col-md-4"><div class="banner-box"></div></div>
+        <div class="col-md-4">
+                <div class="banner-box">
+                    <img src ="{{ asset('img/banner/banner1.jpg') }}" alt="banner1" class="banner img-fluid w-100">
+                </div>
+        </div>
+
+        <div class="col-md-4">
+                <div class="banner-box">
+                    <img src ="{{ asset('img/banner/banner1.jpg') }}" alt="banner1" class="banner img-fluid w-100">
+                </div>
+        </div>
+
+        <div class="col-md-4">
+                <div class="banner-box">
+                    <img src ="{{ asset('img/banner/banner1.jpg') }}" alt="banner1" class="banner img-fluid w-100">
+                </div>
+        </div>
     </div>
+
+    <!--@auth
+        @if(auth()->user()->isAdmin())
+            <div class="mb-4">
+                <a href="{{ route('solicitacoes') }}" class="btn btn-warning">Ver solicitações</a>
+            </div>
+        @endif
+    @endauth-->
 
     <h5 class="section-title">Receitas mais buscadas</h5>
     <div class="d-flex justify-content-between mb-5 text-center">

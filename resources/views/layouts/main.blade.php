@@ -29,7 +29,13 @@
                 <div class="search-container">
                     <input type="text" class="search-bar" placeholder="Pesquisar...">
                 </div>
-                <a href="{{ route('profile') }}" class="perfil-icon">👤</a>
+                <!--PRO BOTAO SO APARECER PRO ADIMIN--> 
+                @auth
+                    @if(auth()->user()->isAdmin())
+                        <a href="{{ route('solicitacoes') }}" class="btn admin-button">Ver solicitações</a>
+                    @endif
+                @endauth
+                <a href="{{ route('profile.show') }}" class="perfil-icon">👤</a>
             </div>
         </nav>
     </header>

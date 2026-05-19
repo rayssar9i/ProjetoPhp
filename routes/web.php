@@ -1,26 +1,70 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\RecipeApprovalController;
 use Illuminate\Support\Facades\Route;
 
-/*! Route::get('/', function () {
+// ============================================
+// ROTAS PÚBLICAS
+// ============================================
+
+Route::get('/', function () {
     return view('welcome');
-});*/ 
+})->name('welcome');
 
-use App\Http\Controllers\RecipeController;
+Route::get('/home', [RecipeController::class, 'index'])->name('home');
 
+// ============================================
+// ROTAS AUTENTICADAS
+// ============================================
 
-Route::get('/', [RecipeController::class, 'index']) -> name('home');
-Route::get('/perfil', [RecipeController::class, 'profile']) -> name('profile');
-Route::get('/receita-exemplo', [RecipeController::class,'show']) -> name('recipe.show');
-Route::get('/receita/criar', [RecipeController::class, 'create'])->name('recipes.create');
+Route::middleware(['auth', 'verified'])->group(function () {
+    
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-// Rota para mostrar o formulário
-Route::get('/receita/criar', [RecipeController::class, 'create'])->name('recipes.create');
+    // ============================================
+    // PERFIL
+    // ============================================
+    
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/receitas', [ProfileController::class, 'myRecipes'])->name('profile.recipes');
+    
+    // ============================================
+    // RECEITAS - ORDEM CORRETA!
+    // ============================================
+    
+    // 1️⃣ CREATE (específica)
+    Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipes.create');
+    Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store');
+    
+    // 2️⃣ EDIT (específica com parâmetro)
+    Route::get('/recipes/{id}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
+    
+    // 3️⃣ UPDATE e DELETE (genéricas mas com método específico)
+    Route::patch('/recipes/{id}', [RecipeController::class, 'update'])->name('recipes.update');
+    Route::delete('/recipes/{id}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
+});
 
-// Rota para RECEBER os dados (o formulário aponta para cá)
-Route::post('/receita/guardar', [RecipeController::class, 'store'])->name('recipes.store');
-// Rota para ver uma receita específica
-Route::get('/receita/{id}', [RecipeController::class, 'show'])->name('recipes.show');
-//listas de rotas, drirecionamento para as paginas, paginas estao na pasta resources/views, o nome da pagina tem que ser igual ao nome da rota, exemplo: /contact tem que ter uma pagina chamada contact.blade.php, e assim por diante.
+// 4️⃣ SHOW (pública, genérica) - DEVE SER A ÚLTIMA!
+Route::get('/recipes/{id}', [RecipeController::class, 'show'])->name('recipes.show');
 
-?>
+// ============================================
+// GERENCIAMENTO (ADMIN/MANAGER)
+// ============================================
+
+Route::middleware(['auth', 'manager'])->prefix('manager')->name('manager.')->group(function () {
+    Route::get('/recipes', [RecipeApprovalController::class, 'index'])->name('recipes.index');
+    Route::get('/recipes/{recipe}', [RecipeApprovalController::class, 'show'])->name('recipes.show');
+    Route::patch('/recipes/{recipe}/approve', [RecipeApprovalController::class, 'approve'])->name('recipes.approve');
+    Route::patch('/recipes/{recipe}/reject', [RecipeApprovalController::class, 'reject'])->name('recipes.reject');
+});
+
+Route::middleware(['auth', 'manager'])->get('/solicitacoes', [RecipeApprovalController::class, 'index'])->name('solicitacoes');
+
+require __DIR__.'/auth.php';
